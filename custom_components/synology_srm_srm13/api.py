@@ -22,10 +22,10 @@ class SynologySRMApi:
   if not self._sid: raise SynologySRMAuthError("SRM did not return a session ID")
  async def async_get_devices(self):
   if not self._sid: await self.async_login()
-  p={"api":API_DEVICE,"version":API_VERSION_DEVICE,"method":"get","sid":self._sid}
+  p={"api":API_DEVICE,"version":API_VERSION_DEVICE,"method":"get","_sid":self._sid}
   data=await self._request("entry.cgi",p)
   if not data.get("success"):
-   self._sid=None; await self.async_login(); p["sid"]=self._sid; data=await self._request("entry.cgi",p)
+   self._sid=None; await self.async_login(); p["_sid"]=self._sid; data=await self._request("entry.cgi",p)
   if not data.get("success"): raise SynologySRMApiError(self._format_error(data))
   devices=(data.get("data") or {}).get("devices",[])
   if not isinstance(devices,list): raise SynologySRMApiError("Unexpected SRM device-list response")
@@ -33,7 +33,7 @@ class SynologySRMApi:
  async def _request(self,endpoint,params):
   safe=dict(params)
   if "passwd" in safe: safe["passwd"]="***"
-  if "sid" in safe: safe["sid"]="***"
+  if "_sid" in safe: safe["_sid"]="***"
   _LOGGER.debug("SRM API request %s params=%s",endpoint,safe)
   try:
    async with self._session.get(f"{self.base_url}/{endpoint}",params=params,ssl=self.verify_ssl if self.use_ssl else False,timeout=15) as r:
