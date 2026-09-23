@@ -3,7 +3,7 @@ from homeassistant.const import Platform
 from .const import *
 from .api import SynologySRMApi
 from .coordinator import SynologySRMCoordinator
-PLATFORMS=[Platform.DEVICE_TRACKER]
+PLATFORMS=[Platform.DEVICE_TRACKER, Platform.SENSOR]
 async def async_setup_entry(hass,entry):
  api=SynologySRMApi(hass,entry.data[CONF_HOST],entry.data[CONF_PORT],entry.data[CONF_USERNAME],entry.data[CONF_PASSWORD],entry.data[CONF_SSL],entry.data[CONF_VERIFY_SSL])
  c=SynologySRMCoordinator(hass,api,timedelta(seconds=entry.options.get(CONF_SCAN_INTERVAL,DEFAULT_SCAN_INTERVAL)))
