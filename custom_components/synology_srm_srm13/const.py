@@ -1,0 +1,34 @@
+"""Constants for Synology SRM 1.3.x."""
+from __future__ import annotations
+
+DOMAIN = "synology_srm_srm13"
+NAME = "Synology SRM 1.3.x"
+VERSION = "0.1.0"
+
+DEFAULT_PORT = 8000
+DEFAULT_SCAN_INTERVAL = 30
+DEFAULT_SSL = False
+DEFAULT_VERIFY_SSL = True
+
+API_AUTH = "SYNO.API.Auth"
+API_DEVICE = "SYNO.Core.Network.NSM.Device"
+API_VERSION_AUTH = 3
+API_VERSION_DEVICE = 5
+
+CONF_HOST = "host"
+CONF_PORT = "port"
+CONF_USERNAME = "username"
+CONF_PASSWORD = "password"
+CONF_SSL = "ssl"
+CONF_VERIFY_SSL = "verify_ssl"
+CONF_SCAN_INTERVAL = "scan_interval"
+
+ATTR_IP = "ip_address"
+ATTR_MAC = "mac_address"
+ATTR_HOSTNAME = "hostname"
+ATTR_CONNECTION = "connection"
+ATTR_WIRELESS = "is_wireless"
+ATTR_BAND = "band"
+ATTR_SIGNAL = "signal_strength"
+ATTR_SSID = "wifi_ssid"
+ATTR_DEVICE_TYPE = "device_type"
