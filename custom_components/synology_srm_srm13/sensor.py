@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import re
+
 from homeassistant.components.sensor import SensorDeviceClass, SensorEntity, SensorStateClass
 from homeassistant.const import SIGNAL_STRENGTH_DECIBELS_MILLIWATT
 
@@ -54,9 +56,17 @@ class SRMClientSensor(SRMClientEntity, SensorEntity):
         d = self.client
         if self.kind == "signal":
             value = d.get("signalstrength", d.get("signal_strength"))
+            if value is None:
+                return None
+            if isinstance(value, (int, float)):
+                return float(value)
+            # SRM may return values such as "-58 dBm" rather than a number.
+            match = re.search(r"[-+]?\d+(?:[.,]\d+)?", str(value))
+            if not match:
+                return None
             try:
-                return float(value) if value is not None else None
-            except (TypeError, ValueError):
+                return float(match.group(0).replace(",", "."))
+            except ValueError:
                 return None
         if self.kind == "connection":
             return d.get("connection")

@@ -1,9 +1,9 @@
 {
   "domain": "synology_srm_srm13",
   "name": "Synology SRM 1.3.x",
-  "version": "0.2.0",
-  "documentation": "https://github.com/YOUR_GITHUB_USER/synology-srm-srm13",
-  "issue_tracker": "https://github.com/YOUR_GITHUB_USER/synology-srm-srm13/issues",
+  "version": "0.2.1",
+  "documentation": "https://github.com/rocagency/synology-srm-srm13-hacs",
+  "issue_tracker": "https://github.com/rocagency/synology-srm-srm13-hacs/issues",
   "codeowners": [],
   "config_flow": true,
   "integration_type": "hub",

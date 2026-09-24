@@ -2,7 +2,7 @@
 
 Custom HACS integration for Synology routers running SRM 1.3.x, including the RT6600ax.
 
-## v0.2.0
+## v0.2.1
 
 - Uses the SRM 1.3.x `SYNO.Core.Network.NSM.Device` API.
 - Correctly passes the authentication session as `_sid`.
